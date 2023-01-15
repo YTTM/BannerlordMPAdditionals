@@ -6,7 +6,7 @@ using HarmonyLib;
 
 namespace BannerlordMPAdditionals
 {
-    public class PatchMissionMultiplayerSiegeGetMoraleGain
+    public static class PatchMissionMultiplayerSiegeGetMoraleGain
     {
         private static int i = 0;
         public static int div = 0;
