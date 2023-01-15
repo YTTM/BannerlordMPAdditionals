@@ -56,7 +56,18 @@ namespace BannerlordMPAdditionals
                 }
                 else
                 {
-                    Debug.Print("[BMPA] invalid SiegeNegativeMoraleDivider", 0, Debug.DebugColor.Red);
+                    if (configuration.SiegeNegativeMoraleDivider == 2)
+                    {
+                        var postfix = typeof(PatchMissionMultiplayerSiegeGetMoraleGain).GetMethod("GetMoraleGain2_Postfix");
+                        // Debug.Print(postfix.ToString(), 0, Debug.DebugColor.Yellow);
+
+                        harmony.Patch(original, postfix: new HarmonyMethod(postfix));
+                        Debug.Print("[BMPA] SiegeNegativeMoraleDivider : 2", 0, Debug.DebugColor.Green);
+                    }
+                    else
+                    {
+                        Debug.Print("[BMPA] invalid SiegeNegativeMoraleDivider", 0, Debug.DebugColor.Red);
+                    }
                 }
             }
         }
