@@ -6,25 +6,29 @@ using HarmonyLib;
 
 namespace BannerlordMPAdditionals
 {
-    class PatchMissionMultiplayerSiegeGetMoraleGain
+    public class PatchMissionMultiplayerSiegeGetMoraleGain
     {
-        public static int i = 0;
+        private static int i = 0;
+        public static int div = 0;
         public static void GetMoraleGain0_Postfix(ref int __result)
         {
             __result = 0;
         }
-        public static void GetMoraleGain2_Postfix(ref int __result)
+        public static void GetMoraleGainDiv_Postfix(ref int __result)
         {
-            if (__result <= -2) // __ result ]-inf, -2]
+            if(div <= 0)
+                __result = 0;
+
+            if (__result <= -div) // __ result ]-inf, -div]
             {
-                __result /= 2;
+                __result /= div;
             }
             else if(__result < 0) // __result = -1
             {
                 i += __result;
-                if(i <= -2)
+                if(i <= -div)
                 {
-                    __result = i / 2;
+                    __result = i / div;
                     i = 0;
                 }
                 else
