@@ -37,11 +37,8 @@ namespace BannerlordMPAdditionals
             Harmony.DEBUG = true;
             var harmony = new Harmony("yttm.mpadditionals.bannerlord");
 
-            if (configuration.SiegeNegativeMoraleDivider == 1)
-            {
-                Debug.Print("[BMPA] SiegeNegativeMoraleDivider : do nothing", 0, Debug.DebugColor.Green);
-            }
-            else
+            // Siege Morale Divider
+            if (configuration.SiegeNegativeMoraleDivider != 1)
             {
                 var original = typeof(MissionMultiplayerSiege).GetMethod("GetMoraleGain", BindingFlags.NonPublic | BindingFlags.Instance);
                 // Debug.Print(original.ToString(), 0, Debug.DebugColor.Yellow);
